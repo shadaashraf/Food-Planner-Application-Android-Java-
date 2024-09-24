@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">RosyRecipeBox</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="AllCategories">All Categories</string>
+    <string name="AllCategory">All Categories\n</string>
+    <string name="AllIngriedients">All Ingredients</string>
+    <string name="Saved">All Save Items</string>
+    <string name="MealOfDay">Meal Of The Day</string>
+    <string name="NewRecipe">Create New Recipe</string>
+    <string name="Welcome">Welcome to your RosyRecipeBox\n</string>
+    <string name="TrendyMeals">Trendy Meals</string>
+    <string name="CreateNewRecipe">Create New Recipe</string>
+    <string name="Cover">Add Cover Photo\n</string>
+    <string name="ViewALl">View All</string>
+    <string name="View">View All\n\n</string>
+    <string name="viewall">view all</string>
+</resources>
