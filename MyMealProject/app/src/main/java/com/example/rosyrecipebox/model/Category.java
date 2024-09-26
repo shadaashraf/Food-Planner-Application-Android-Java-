@@ -1,5 +1,3 @@
-package com.example.rosyrecipebox.model;
-
-public class Category {
+package com.example.rosyrecipebox.model;public class Category {
     public String strCategory;
 }

@@ -1,5 +1,6 @@
-package com.example.rosyrecipebox.home.view;
+package com.example.rosyrecipebox.saved.view;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,28 +9,30 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.rosyrecipebox.MealDetails.view.MealDetailFragment;
 import com.example.rosyrecipebox.R;
 import com.example.rosyrecipebox.db.MealLocalDataSourceImpl;
-import com.example.rosyrecipebox.home.presenter.HomePresenter;
 import com.example.rosyrecipebox.model.Meal;
 import com.example.rosyrecipebox.model.MealsRepositoryImpl;
 import com.example.rosyrecipebox.network.Area.AreaRemoteDataSourceImpl;
 import com.example.rosyrecipebox.network.Category.CategoryRemoteDataSourceImpl;
 import com.example.rosyrecipebox.network.Ingridients.IngridientsRemoteDataSourceImpl;
 import com.example.rosyrecipebox.network.ListOfMeals.MealsRemoteDataSourceImpl;
+import com.example.rosyrecipebox.saved.presenter.SavedPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeFragment extends Fragment implements SaveOnclickListener, HomeViewInterface {
+public class SavedFragment extends Fragment implements SaveOnclickListener, SavedViewInterface {
 
     private RecyclerView recyclerView;
-    private HomeRandomAdapter homeAdapter;
-    private HomePresenter homePresenter;
+    private SavedAdapter savedAdapter;
+    private SavedPresenter savedPresenter;
     private LinearLayoutManager layoutManager;
     private MealsRepositoryImpl repo;
     MealsRemoteDataSourceImpl mealsRemoteDataSource;
@@ -47,6 +50,7 @@ public class HomeFragment extends Fragment implements SaveOnclickListener, HomeV
     }
 
     // Override onViewCreated to initialize UI elements after the view is created
+    @SuppressLint("FragmentLiveDataObserve")
     @Override
 
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -69,16 +73,30 @@ public class HomeFragment extends Fragment implements SaveOnclickListener, HomeV
 
         recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getContext());
-        layoutManager.setOrientation(RecyclerView.HORIZONTAL);
+        layoutManager.setOrientation(RecyclerView.VERTICAL);
 
         // Set up adapter
-        homeAdapter = new HomeRandomAdapter(getContext(), new ArrayList<>(), this);
+        savedAdapter = new SavedAdapter(getContext(), new ArrayList<>(), this);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(homeAdapter);
+        recyclerView.setAdapter(savedAdapter);
 
         // Initialize presenter and load products
-        homePresenter = new HomePresenter(HomeFragment.this, repo);
-        homePresenter.getProducts();
+        savedPresenter = new SavedPresenter(SavedFragment.this, repo);
+        LiveData<List<Meal>> storedMeals=savedPresenter.getProducts();
+        storedMeals.observe(SavedFragment.this, new Observer<List<Meal>>() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onChanged(List<Meal> products) {
+                if (products != null) {
+                    showData(products);
+                }
+                else {
+                    showErrMsg("There are no products");
+                }
+            }
+        });
+
+
     }
 
     // Method to initialize UI components
@@ -88,9 +106,9 @@ public class HomeFragment extends Fragment implements SaveOnclickListener, HomeV
 
     // Method to display data when it is available
     @Override
-    public void showData(List<Meal> products) {
-        homeAdapter.setList(products);
-        homeAdapter.notifyDataSetChanged();
+    public void showData(List<Meal> meals ){
+        savedAdapter.setList(meals);
+        savedAdapter.notifyDataSetChanged();
     }
 
 
@@ -103,14 +121,14 @@ public class HomeFragment extends Fragment implements SaveOnclickListener, HomeV
     // Method to save a meal (add to favorites)
     @Override
     public void SaveMeal(Meal meal) {
-        homePresenter.addToSaved(meal);
+        savedPresenter.addToSaved(meal);
         Toast.makeText(getContext(), "Meal Added To Favourites", Toast.LENGTH_SHORT).show();
     }
 
     // Method to delete a meal (remove from favorites)
     @Override
     public void DeleteMeal(Meal meal) {
-        homePresenter.removeFromSaved(meal);
+        savedPresenter.removeFromSaved(meal);
         Toast.makeText(getContext(), "Meal Removed From Favourites", Toast.LENGTH_SHORT).show();
     }
 

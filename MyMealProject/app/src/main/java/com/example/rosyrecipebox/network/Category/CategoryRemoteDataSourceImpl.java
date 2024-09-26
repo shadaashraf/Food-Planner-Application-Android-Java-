@@ -34,7 +34,7 @@ public class CategoryRemoteDataSourceImpl {
             @Override
             public void onResponse(Call<CategoryResponse> call, Response<CategoryResponse> response) {
                 if(response.isSuccessful()){
-                    networkCallback.onSuccessResult(response.body().meals);
+                    networkCallback.onSuccessResultCategory(response.body().meals);
                     Log.i(TAG, "onResponse: "+response.body().meals.get(0));
                 }
             }

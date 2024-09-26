@@ -1,4 +1,4 @@
-package com.example.rosyrecipebox.home.view;
+package com.example.rosyrecipebox.saved.view;
 
 
 import android.annotation.SuppressLint;
@@ -7,11 +7,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -21,13 +21,13 @@ import com.example.rosyrecipebox.model.Meal;
 
 import java.util.List;
 
-public class HomeRandomAdapter extends RecyclerView.Adapter<HomeRandomAdapter.ViewHolder>{
+public class SavedAdapter extends RecyclerView.Adapter<SavedAdapter.ViewHolder>{
         private final Context context;
-        private List<Meal> meal;
+        private List<Meal>meal;
         private static final String TAG = "RecyclerView";
         SaveOnclickListener listener;
         // Constructor
-        public HomeRandomAdapter(Context _context, List<Meal> _meal, SaveOnclickListener _listener ) {
+        public SavedAdapter(Context _context, List<Meal> _meal, SaveOnclickListener _listener ) {
             this.context = _context;
             this.meal= _meal;
             listener=_listener;

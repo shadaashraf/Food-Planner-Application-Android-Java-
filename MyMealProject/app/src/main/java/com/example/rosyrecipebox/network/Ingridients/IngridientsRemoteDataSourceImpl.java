@@ -34,7 +34,7 @@ public class IngridientsRemoteDataSourceImpl {
             @Override
             public void onResponse(Call<IngradiantsResponse> call, Response<IngradiantsResponse> response) {
                 if(response.isSuccessful()){
-                    networkCallback.onSuccessResult(response.body().meals);
+                    networkCallback.onSuccessResultIngrediants(response.body().meals);
                 }
             }
 

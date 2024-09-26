@@ -1,4 +1,4 @@
-package com.example.rosyrecipebox.home.view;
+package com.example.rosyrecipebox.saved.view;
 
 import com.example.rosyrecipebox.model.Meal;
 

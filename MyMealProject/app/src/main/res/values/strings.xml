@@ -15,4 +15,9 @@
     <string name="ViewALl">View All</string>
     <string name="View">View All\n\n</string>
     <string name="viewall">view all</string>
+    <string name="SearchByIngredients">Search By Ingredients</string>
+    <string name="SearchByCategory">Search By Category</string>
+    <string name="SearchByArea">SearchByArea</string>
+    <string name="SearchByCategory2">Search By Category</string>
+    <string name="SearchByArea2">Search By Area</string>
 </resources>

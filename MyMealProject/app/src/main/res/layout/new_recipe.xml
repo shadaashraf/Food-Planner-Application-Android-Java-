@@ -103,7 +103,7 @@
         app:srcCompat="@drawable/stars" />
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/Ingredientbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="84dp"

@@ -7,6 +7,6 @@ import com.example.rosyrecipebox.model.Category;
 import java.util.List;
 
 public interface CategoryNetworkCallback {
-    public void onSuccessResult(List<Category> categories);
+    public void onSuccessResultCategory(List<Category> categories);
     public void onFailureResult(String errorMsg);
 }

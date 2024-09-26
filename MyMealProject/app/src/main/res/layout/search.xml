@@ -9,20 +9,6 @@
     <!-- Search Bar at the top -->
 
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/search_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/rounded_searchview"
-        android:iconifiedByDefault="false"
-        android:padding="10dp"
-        android:queryHint="Search"
-        android:textDirection="ltr"
-        app:iconifiedByDefault="false"
-        app:searchHintIcon="@drawable/search_40px" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,8 +21,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="First List"
-            android:textSize="18sp"
+            android:background="#FFFFFF"
+            android:text="@string/SearchByIngredients"
+            android:textColor="#E46D6D"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
         <Button
@@ -54,7 +42,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/first_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:scrollbars="vertical" />
 
@@ -71,8 +59,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Second List"
-            android:textSize="18sp"
+            android:text="@string/SearchByCategory"
+            android:textColor="#E46D6D"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
         <Button
@@ -107,8 +96,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Third List"
-            android:textSize="18sp"
+            android:text="@string/SearchByArea2"
+            android:textColor="#E46D6D"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
         <Button

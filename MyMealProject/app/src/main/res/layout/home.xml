@@ -6,12 +6,6 @@
     android:padding="16dp">
 
     <!-- TextView for first RecyclerView -->
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="25dp"
-        android:text="@string/Welcome" />
 
     <TextView
         android:id="@+id/tv_first_recycler"
@@ -19,7 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="@string/MealOfDay"
-        android:textSize="24sp"
+        android:textColor="#e46d6d"
+        android:textSize="34sp"
         android:textStyle="bold" />
 
     <!-- First RecyclerView -->
@@ -38,7 +33,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="@string/TrendyMeals"
-        android:textSize="24sp"
+        android:textColor="#e46d6d"
+        android:textSize="34sp"
         android:textStyle="bold" />
 
     <!-- Second RecyclerView -->

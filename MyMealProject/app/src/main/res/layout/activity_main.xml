@@ -1,66 +1,46 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#8FFFF9F9"
+    android:background="#FFFFFF"
     android:gravity="center"
     android:orientation="vertical">
 
     <!-- Top Navigation Bar -->
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/top_navigation_bar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@null"
-        android:gravity="center"
-        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:background="#FBF6F6"
         android:padding="8dp">
 
         <!-- Home Icon -->
-        <ImageButton
-            android:id="@+id/navigation_home_top"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@null"
-            android:contentDescription="Home"
-           />
 
         <!-- Search Icon -->
-        <ImageButton
-            android:id="@+id/navigation_search_top"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_weight="1"
-            android:background="@null"
-            android:contentDescription="Search" />
 
         <!-- Add Icon -->
-        <ImageButton
-            android:id="@+id/navigation_add_top"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_weight="1"
-            android:background="@null"
-            android:contentDescription="Add" />
 
         <!-- Grid Icon -->
         <ImageButton
-            android:id="@+id/navigation_grid_top"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_weight="1"
+            android:id="@+id/navigation_save"
+            android:layout_width="53dp"
+            android:layout_height="33dp"
             android:background="@null"
             android:contentDescription="Grid"
-            android:src="@drawable/bookmark_40px" />
-    </LinearLayout>
+            android:src="@drawable/bookmark_40px"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.977"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <!-- Scrollable Fragment Container -->
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1">
 
         <FrameLayout
@@ -71,56 +51,83 @@
     </ScrollView>
 
     <!-- Bottom Navigation Bar -->
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottom_navigation_bar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@null"
-        android:gravity="center"
-        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
         android:padding="8dp">
 
         <!-- Home Icon -->
-        <ImageButton
-            android:id="@+id/navigation_home"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@null"
-            android:contentDescription="Home"
-            android:src="@drawable/home_40px" />
 
         <!-- Search Icon -->
-        <ImageButton
-            android:id="@+id/navigation_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_weight="1"
-            android:background="@null"
-            android:contentDescription="Search"
-            android:src="@drawable/search_40px" />
 
         <!-- Add Icon -->
+
+        <!-- Grid Icon -->
+
+        <ImageButton
+            android:id="@+id/navigation_home"
+            android:layout_width="57dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="4dp"
+            android:background="@null"
+            android:contentDescription="Home"
+            android:src="@drawable/home"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.121"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageButton
+            android:id="@+id/navigation_search"
+            android:layout_width="50dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="4dp"
+            android:background="@null"
+            android:contentDescription="Search"
+            android:src="@drawable/search"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.353"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
         <ImageButton
             android:id="@+id/navigation_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_weight="1"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="4dp"
             android:background="@null"
             android:contentDescription="Add"
-            android:src="@drawable/more" />
+            android:src="@drawable/more"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.588"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
 
-        <!-- Grid Icon -->
         <ImageButton
             android:id="@+id/navigation_grid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_weight="1"
+            android:layout_width="36dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="4dp"
             android:background="@null"
             android:contentDescription="Grid"
-            android:src="@drawable/date_range_24px" />
-    </LinearLayout>
+            android:src="@drawable/calendar_day"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.829"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.142" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

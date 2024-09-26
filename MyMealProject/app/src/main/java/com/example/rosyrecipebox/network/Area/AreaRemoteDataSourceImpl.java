@@ -34,7 +34,7 @@ public class AreaRemoteDataSourceImpl {
             @Override
             public void onResponse(Call<AreaResponse> call, Response<AreaResponse> response) {
                 if(response.isSuccessful()){
-                    networkCallback.onSuccessResult(response.body().meals);
+                    networkCallback.onSuccessResultArea(response.body().meals);
                     Log.i(TAG, "onResponse: " + response.body().meals.get(0));
                 }
             }

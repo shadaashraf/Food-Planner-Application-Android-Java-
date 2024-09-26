@@ -4,6 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity(tableName = "Meal_table")
 public class Meal {
     @PrimaryKey
@@ -59,8 +62,41 @@ public class Meal {
     public String strMeasure19;
     public String strMeasure20;
     public String strSource;
-    //public Object strImageSource;
-   // public Object strCreativeCommonsConfirmed;
-   // public Object dateModified;
+
+
+
+
+
+    public List<String> getIngredients() {
+        List<String> ingredients = new ArrayList<>();
+        for (int i = 1; i <= 20; i++) {
+            try {
+                String ingredient = (String) getClass().getField("strIngredient" + i).get(this);
+                if (ingredient != null && !ingredient.isEmpty()) {
+                    ingredients.add(ingredient);
+                }
+            } catch (IllegalAccessException | NoSuchFieldException e) {
+
+                e.printStackTrace();
+            }
+        }
+        return ingredients;
+    }
+
+    public List<String> getMeasurements() {
+        List<String> measurements = new ArrayList<>();
+        for (int i = 1; i <= 20; i++) {
+            try {
+                String measurement = (String) getClass().getField("strMeasure" + i).get(this);
+                if (measurement != null && !measurement.isEmpty()) {
+                    measurements.add(measurement);
+                }
+            } catch (IllegalAccessException | NoSuchFieldException e) {
+
+                e.printStackTrace();
+            }
+        }
+        return measurements;
+    }
 
 }

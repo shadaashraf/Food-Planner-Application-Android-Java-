@@ -7,6 +7,6 @@ import com.example.rosyrecipebox.model.Ingridients;
 import java.util.List;
 
 public interface IngridientsNetworkCallback {
-    public void onSuccessResult(List<Ingridients> ingridients);
+    public void onSuccessResultIngrediants(List<Ingridients> ingridients);
     public void onFailureResult(String errorMsg);
 }

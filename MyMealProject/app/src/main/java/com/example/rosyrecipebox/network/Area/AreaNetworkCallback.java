@@ -7,6 +7,6 @@ import com.example.rosyrecipebox.model.Area;
 import java.util.List;
 
 public interface AreaNetworkCallback {
-    public void onSuccessResult(List<Area> areass);
+    public void onSuccessResultArea(List<Area> areass);
     public void onFailureResult(String errorMsg);
 }

@@ -1,75 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_width="190dp"
+    android:layout_height="100dp"
     android:layout_marginLeft="5dp"
     android:layout_marginTop="10dp"
     android:layout_marginBottom="10dp"
-    android:gravity="center"
     android:orientation="horizontal">
 
-    <FrameLayout
+    <ImageButton
+        android:id="@+id/Category_regtangle_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="0dp"> <!-- Add margin between elements -->
+        app:srcCompat="@drawable/filled_regtangle" />
 
-        <View
-            android:id="@+id/ingradiant_circle1"
-            android:layout_width="180dp"
-            android:layout_height="100dp"
-            android:background="@drawable/filled_regtangle" />
+    <ImageView
+        android:id="@+id/Category_tiny_image"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center|right" />
 
-        <ImageView
-            android:id="@+id/Ingradiant_tiny_image1"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center|right" />
-
-        <TextView
-            android:id="@+id/CategoryName1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|left"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="20dp"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tools:text="lamp and lol" />
-    </FrameLayout>
-
-    <FrameLayout
+    <TextView
+        android:id="@+id/CategoryName1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp">
+        android:layout_gravity="center|left"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="20dp"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        tools:text="lamp and lol" />
 
-        <View
-            android:id="@+id/ingradiant_circle2"
-            android:layout_width="180dp"
-            android:layout_height="100dp"
-            android:background="@drawable/filled_regtangle" />
-
-        <ImageView
-            android:id="@+id/Ingradiant_tiny_image2"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_gravity="center|left" />
-
-        <TextView
-            android:id="@+id/CategoryName2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|right"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="20dp"
-            android:textAlignment="center"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            tools:text="TextView" />
-    </FrameLayout>
-
-</LinearLayout>
+</FrameLayout>
