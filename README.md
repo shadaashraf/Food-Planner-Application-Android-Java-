@@ -13,6 +13,6 @@ The Food Planner Application is an Android mobile app designed to help users eff
 - **Weekly Meal Planning:** Users can add meals to their weekly plan and access them offline.
 - **Detailed Meal View:** View meal details, including name, image, origin, ingredients (with images), cooking steps, and an embedded instructional video.
 - **Splash Screen Animation:** Includes a visually appealing animated splash screen.
-- **Calendar Integration (Bonus):** Add meals to a mobile calendar for better organization.
+- **Calendar Integration:** Add meals to a mobile calendar for better organization.
 
 This application utilizes the MealDB API to provide a wide range of meal options and resources, making it a valuable tool for meal planning and culinary exploration.
