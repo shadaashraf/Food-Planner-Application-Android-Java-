@@ -6,7 +6,9 @@ import androidx.lifecycle.LiveData;
 
 
 import com.example.rosyrecipebox.model.Meal;
+import com.example.rosyrecipebox.model.PlanMeal;
 
+import java.util.Date;
 import java.util.List;
 
 public class MealLocalDataSourceImpl {
@@ -17,8 +19,8 @@ public class MealLocalDataSourceImpl {
 
     private MealLocalDataSourceImpl(Context context){
         AppDataBase db = AppDataBase.getInstance(context.getApplicationContext());
-        mealDAO = db.getProductDAO();
-        storedMeals = mealDAO.getAllProducts();
+        mealDAO = db.getMealDAO();
+
     }
 
     public static MealLocalDataSourceImpl getInstance(Context context){
@@ -28,25 +30,46 @@ public class MealLocalDataSourceImpl {
             return repo;
     }
 
+    public LiveData<List<PlanMeal>> getPlanData(Date date) {
+
+        return mealDAO.getAllPlanMeal(date);
+    }
     public LiveData<List<Meal>> getStoredData() {
 
-        return storedMeals;
+        return mealDAO.getAllMeal();
     }
 
-    public void delete(Meal meal){
+    public void deleteMeal(Meal meal){
         new Thread(new Runnable() {
             @Override
             public void run() {
-                mealDAO.deleteProduct(meal);
+                mealDAO.deleteMeal(meal);
             }
         }).start();
     }
 
-    public void insert(Meal meal){
+    public void insertMeal(Meal meal){
         new Thread(new Runnable() {
             @Override
             public void run() {
-                mealDAO.insertProduct(meal);
+                mealDAO.insertMeal(meal);
+            }
+        }).start();
+    }
+    public void deletePlanMeal(PlanMeal planMeal){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mealDAO.deletePlanMeal(planMeal);
+            }
+        }).start();
+    }
+
+    public void insertPlanMeal(PlanMeal planMeal){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                mealDAO.insertPlanMeal(planMeal);
             }
         }).start();
     }

@@ -1,121 +1,73 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
-    android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Search Bar at the top -->
-
-
-    <LinearLayout
+    <SearchView
+        android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:queryHint="Search anything..."
+        app:layout_constraintBottom_toTopOf="@+id/AreaSearchBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
-        android:orientation="horizontal">
+    <Button
+        android:id="@+id/AreaSearchBtn"
+        style="@style/CustomButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="72dp"
+        android:text="@string/area"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_first_recycler"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#FFFFFF"
-            android:text="@string/SearchByIngredients"
-            android:textColor="#E46D6D"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+    <Button
+        android:id="@+id/CategSearchBtn"
+        style="@style/CustomButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/Category"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.83"
+        app:layout_constraintStart_toEndOf="@+id/AreaSearchBtn"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btn_first_view_all"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            android:text="@string/viewall"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            android:textStyle="normal" />
-    </LinearLayout>
+    <Button
+        android:id="@+id/IngSearchBtn"
+        style="@style/CustomButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:text="@string/ing"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/AreaSearchBtn"
+        app:layout_constraintHorizontal_bias="0.578"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- First RecyclerView -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/first_recycler_view"
+        android:id="@+id/MealRecycleView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:scrollbars="vertical" />
-
-    <!-- Second section: TextView and Button for second RecyclerView -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/tv_second_recycler"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/SearchByCategory"
-            android:textColor="#E46D6D"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/btn_second_view_all"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            android:text="@string/viewall"
-            android:textColor="@color/black"
-            android:textColorLink="#FFFFFF"
-            android:textSize="12sp" />
-    </LinearLayout>
-
-    <!-- Second RecyclerView -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/second_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:scrollbars="vertical" />
-
-    <!-- Third section: TextView and Button for third RecyclerView -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/tv_third_recycler"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/SearchByArea2"
-            android:textColor="#E46D6D"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/btn_third_view_all"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            android:text="@string/viewall"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
-    </LinearLayout>
-
-    <!-- Third RecyclerView -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/third_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="vertical" />
-
-</LinearLayout>
+        android:layout_marginTop="140dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

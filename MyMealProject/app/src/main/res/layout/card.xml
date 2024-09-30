@@ -8,32 +8,44 @@
 
     <!-- First CardView -->
     <androidx.cardview.widget.CardView
-        android:layout_width="180dp"
-        android:layout_height="250dp"
-        android:layout_margin="8dp"
+        android:id="@+id/cardView"
+        android:layout_width="149dp"
+        android:layout_height="215dp"
+        android:layout_margin="6dp"
         android:background="@drawable/border_background"
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/relativeLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:padding="8dp">
 
             <!-- Dish Thumbnail -->
 
             <!-- Dish Name -->
 
+            <ImageButton
+                android:id="@+id/Calender"
+                android:layout_width="32dp"
+                android:layout_height="42dp"
+                android:layout_marginTop="148dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="Save Button"
+                android:src="@drawable/date_range_24px"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="92dp" />
+
             <ImageView
                 android:id="@+id/img_dish_thumbnail1"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
+                android:layout_width="131dp"
+                android:layout_height="105dp"
                 android:layout_marginTop="6dp"
                 android:layout_marginBottom="89dp"
                 android:scaleType="centerCrop"
@@ -46,8 +58,8 @@
                 android:id="@+id/img_btn_save"
                 android:layout_width="32dp"
                 android:layout_height="31dp"
-                android:layout_marginTop="120dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginTop="104dp"
+                android:layout_marginEnd="3dp"
                 android:background="@android:color/transparent"
                 android:contentDescription="Save Button"
                 android:src="@drawable/save"
@@ -63,7 +75,7 @@
                 android:layout_marginEnd="21dp"
                 android:fontFamily="sans-serif-medium"
                 android:textColor="@android:color/black"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.061"
@@ -79,25 +91,10 @@
                 android:layout_marginTop="51dp"
                 android:fontFamily="sans-serif-medium"
                 android:textColor="@android:color/black"
-                android:textSize="14sp"
+                android:textSize="10sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/img_dish_thumbnail1"
                 tools:text="Recipe" />
-
-            <ImageButton
-                android:id="@+id/enter"
-                android:layout_width="53dp"
-                android:layout_height="27dp"
-                android:layout_marginStart="127dp"
-                android:layout_marginTop="188dp"
-                android:layout_marginEnd="11dp"
-                android:background="@android:color/transparent"
-                android:contentDescription="Save Button"
-                android:src="@drawable/login"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.725"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

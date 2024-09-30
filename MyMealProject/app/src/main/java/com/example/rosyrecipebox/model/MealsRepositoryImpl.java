@@ -12,6 +12,7 @@ import com.example.rosyrecipebox.network.Ingridients.IngridientsRemoteDataSource
 import com.example.rosyrecipebox.network.ListOfMeals.MealsNetworkCallback;
 import com.example.rosyrecipebox.network.ListOfMeals.MealsRemoteDataSourceImpl;
 
+import java.util.Date;
 import java.util.List;
 
 public class MealsRepositoryImpl {
@@ -39,8 +40,12 @@ public class MealsRepositoryImpl {
         }
         return repo;
     }
+    public LiveData<List<PlanMeal>> getPlanMeal(Date date)
+    {
+        return localSource.getPlanData(date);
+    }
 
-    public LiveData<List<Meal>> getStoredProducts()
+    public LiveData<List<Meal>> getStoredMeal()
     {
         return localSource.getStoredData();
     }
@@ -61,15 +66,20 @@ public class MealsRepositoryImpl {
     {
         MealsremoteSource.makeNetworkCall(networkCallback,dataTYpe,filterValue);
     }
-
-
-    public void insertProduct(Meal meal)
+    public void insertPlanMeal(PlanMeal planMeal)
     {
-        localSource.insert(meal);
+        localSource.insertPlanMeal(planMeal);
     }
 
-    public void deleteProduct(Meal meal)
+    public void deletePlanMeal(PlanMeal planMeal) {localSource.deletePlanMeal(planMeal);}
+
+    public void insertMeal(Meal meal)
     {
-        localSource.delete(meal);
+        localSource.insertMeal(meal);
+    }
+
+    public void deleteMeal(Meal meal)
+    {
+        localSource.deleteMeal(meal);
     }
 }

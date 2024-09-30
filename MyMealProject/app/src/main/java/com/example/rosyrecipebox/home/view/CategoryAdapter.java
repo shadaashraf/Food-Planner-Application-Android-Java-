@@ -1,4 +1,4 @@
-package com.example.rosyrecipebox.search.view;
+package com.example.rosyrecipebox.home.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -12,9 +12,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+import com.bumptech.glide.Glide;
 
+import com.bumptech.glide.request.RequestOptions;
 import com.example.rosyrecipebox.R;
 import com.example.rosyrecipebox.model.Category;
+import com.example.rosyrecipebox.search.view.ViewAllOnclickListener;
 
 
 import java.util.List;
@@ -41,6 +44,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         public ImageView CategoryImage;
         public ImageButton regtangleBtn;
         public TextView CategoryName;
+
         public View layout;
 
         public ViewHolder(View v) {
@@ -49,6 +53,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             CategoryName = v.findViewById(R.id.CategoryName1);
             CategoryImage = v.findViewById(R.id.Category_tiny_image);
             regtangleBtn = v.findViewById(R.id.Category_regtangle_img);
+
         }
     }
 
@@ -62,20 +67,18 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
-//        Glide.with(context).load(categories.get(position).imgURL)
-//                .apply(new RequestOptions().override(200, 200)
-//                        .placeholder(R.drawable.ic_launcher_background)
-//                        .error(R.drawable.ic_launcher_foreground))
-//                .into(holder.CategoryImage);
+        Glide.with(context).load(categories.get(position).strCategoryThumb)
+                .apply(new RequestOptions().override(200, 200)
+                        .placeholder(R.drawable.ic_launcher_background)
+                        .error(R.drawable.ic_launcher_foreground))
+                .into(holder.CategoryImage);
 
         holder.CategoryName.setText(categories.get(position).strCategory);
-        int randomColor = generateRandomColor();
-        holder.regtangleBtn.setBackgroundColor(randomColor);
 
         holder.regtangleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Handle button click
+
             }
         });
 
@@ -87,14 +90,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         return categories.size();
     }
 
-    private int generateRandomColor() {
-        Random random = new Random();
-        // Generate random RGB values
-        int r = random.nextInt(256);
-        int g = random.nextInt(256);
-        int b = random.nextInt(256);
-        return Color.rgb(r, g, b);
-    }
+
 }
 
 

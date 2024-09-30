@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -45,7 +46,7 @@ public class SavedFragment extends Fragment implements SaveOnclickListener, Save
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.home, container, false);
+        return inflater.inflate(R.layout.fragment_fav, container, false);
 
     }
 
@@ -56,17 +57,7 @@ public class SavedFragment extends Fragment implements SaveOnclickListener, Save
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Initialize remote data sources
-        mealsRemoteDataSource = MealsRemoteDataSourceImpl.getInstance(); // Initialize MealsRemoteDataSourceImpl
-        ingridientsRemoteDataSource = IngridientsRemoteDataSourceImpl.getInstance(); // Initialize IngridientsRemoteDataSourceImpl
-        categoryRemoteDataSource =  CategoryRemoteDataSourceImpl.getInstance(); // Initialize CategoryRemoteDataSourceImpl
-        areaRemoteDataSource =  AreaRemoteDataSourceImpl.getInstance(); // Initialize AreaRemoteDataSourceImpl
-
-        // Initialize local data source
-        mealsRepository = MealLocalDataSourceImpl.getInstance(getContext()); // Initialize local data source
-
-        // Initialize repository with data sources
-        repo = MealsRepositoryImpl.getInstance(areaRemoteDataSource, mealsRemoteDataSource, ingridientsRemoteDataSource, categoryRemoteDataSource, mealsRepository);
+        MealsRepositoryImpl repo = MealsRepositoryImpl.getInstance( AreaRemoteDataSourceImpl.getInstance(), MealsRemoteDataSourceImpl.getInstance(), IngridientsRemoteDataSourceImpl.getInstance(), CategoryRemoteDataSourceImpl.getInstance(), MealLocalDataSourceImpl.getInstance(getContext()));
 
         // Initialize UI elements
         initUI(view);
@@ -77,7 +68,8 @@ public class SavedFragment extends Fragment implements SaveOnclickListener, Save
 
         // Set up adapter
         savedAdapter = new SavedAdapter(getContext(), new ArrayList<>(), this);
-        recyclerView.setLayoutManager(layoutManager);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), 2); // Span count = 2 for 2 columns
+        recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(savedAdapter);
 
         // Initialize presenter and load products
@@ -101,7 +93,7 @@ public class SavedFragment extends Fragment implements SaveOnclickListener, Save
 
     // Method to initialize UI components
     private void initUI(View view) {
-        recyclerView = view.findViewById(R.id.first_recycler_view);
+        recyclerView = view.findViewById(R.id.AllFavRecyclerView);
     }
 
     // Method to display data when it is available

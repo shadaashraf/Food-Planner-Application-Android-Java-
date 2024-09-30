@@ -20,4 +20,8 @@
     <string name="SearchByArea">SearchByArea</string>
     <string name="SearchByCategory2">Search By Category</string>
     <string name="SearchByArea2">Search By Area</string>
+    <string name="SavedItems">All Saved Items</string>
+    <string name="ing">Ingredient</string>
+    <string name="Category">Category</string>
+    <string name="area">Area</string>
 </resources>
