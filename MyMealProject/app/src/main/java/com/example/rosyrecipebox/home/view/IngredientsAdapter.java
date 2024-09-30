@@ -1,4 +1,4 @@
-package com.example.rosyrecipebox.search.view;
+package com.example.rosyrecipebox.home.view;
 
 
 import android.annotation.SuppressLint;
@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.rosyrecipebox.R;
 import com.example.rosyrecipebox.model.Ingridients;
+import com.example.rosyrecipebox.search.view.ViewAllOnclickListener;
 
 import java.util.List;
 import java.util.Random;

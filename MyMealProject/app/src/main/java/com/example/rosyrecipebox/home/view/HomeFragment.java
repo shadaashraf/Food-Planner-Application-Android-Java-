@@ -1,6 +1,7 @@
 package com.example.rosyrecipebox.home.view;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,9 @@ import com.example.rosyrecipebox.MealDetails.view.MealDetailFragment;
 import com.example.rosyrecipebox.R;
 import com.example.rosyrecipebox.db.MealLocalDataSourceImpl;
 import com.example.rosyrecipebox.home.presenter.HomePresenter;
+import com.example.rosyrecipebox.model.Area;
+import com.example.rosyrecipebox.model.Category;
+import com.example.rosyrecipebox.model.Ingridients;
 import com.example.rosyrecipebox.model.Meal;
 import com.example.rosyrecipebox.model.MealsRepositoryImpl;
 import com.example.rosyrecipebox.network.Area.AreaRemoteDataSourceImpl;
@@ -31,13 +35,12 @@ public class HomeFragment extends Fragment implements SaveOnclickListener, HomeV
     private HomeRandomAdapter homeAdapter;
     private HomePresenter homePresenter;
     private LinearLayoutManager layoutManager;
-    private MealsRepositoryImpl repo;
-    MealsRemoteDataSourceImpl mealsRemoteDataSource;
-    IngridientsRemoteDataSourceImpl ingridientsRemoteDataSource;
-    CategoryRemoteDataSourceImpl categoryRemoteDataSource;
-    AreaRemoteDataSourceImpl areaRemoteDataSource;
-    MealLocalDataSourceImpl mealsRepository;
-
+    private RecyclerView recyclerViewArea;
+    private RecyclerView recyclerViewCategory;
+    private RecyclerView recyclerViewIngredients;
+    private IngredientsAdapter ingredientsAdapter;
+    private AreaAdapter areaAdapter;
+    private CategoryAdapter categoryAdapter;
     // Override the onCreateView method to inflate the fragment's layout
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -52,40 +55,45 @@ public class HomeFragment extends Fragment implements SaveOnclickListener, HomeV
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Initialize remote data sources
-        mealsRemoteDataSource = MealsRemoteDataSourceImpl.getInstance(); // Initialize MealsRemoteDataSourceImpl
-        ingridientsRemoteDataSource = IngridientsRemoteDataSourceImpl.getInstance(); // Initialize IngridientsRemoteDataSourceImpl
-        categoryRemoteDataSource =  CategoryRemoteDataSourceImpl.getInstance(); // Initialize CategoryRemoteDataSourceImpl
-        areaRemoteDataSource =  AreaRemoteDataSourceImpl.getInstance(); // Initialize AreaRemoteDataSourceImpl
-
-        // Initialize local data source
-        mealsRepository = MealLocalDataSourceImpl.getInstance(getContext()); // Initialize local data source
-
-        // Initialize repository with data sources
-        repo = MealsRepositoryImpl.getInstance(areaRemoteDataSource, mealsRemoteDataSource, ingridientsRemoteDataSource, categoryRemoteDataSource, mealsRepository);
+        MealsRepositoryImpl repo = MealsRepositoryImpl.getInstance( AreaRemoteDataSourceImpl.getInstance(), MealsRemoteDataSourceImpl.getInstance(), IngridientsRemoteDataSourceImpl.getInstance(), CategoryRemoteDataSourceImpl.getInstance(), MealLocalDataSourceImpl.getInstance(getContext()));
 
         // Initialize UI elements
         initUI(view);
-
-        recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(getContext());
-        layoutManager.setOrientation(RecyclerView.HORIZONTAL);
-
-        // Set up adapter
+        // Set up adapters for each RecyclerView
+        ingredientsAdapter = new IngredientsAdapter(getContext(), new ArrayList<>());
+        categoryAdapter = new CategoryAdapter(getContext(), new ArrayList<>());
+        areaAdapter = new AreaAdapter(getContext(), new ArrayList<>());
         homeAdapter = new HomeRandomAdapter(getContext(), new ArrayList<>(), this);
-        recyclerView.setLayoutManager(layoutManager);
+        // Set layout managers
+        recyclerViewIngredients.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerViewCategory.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerViewArea.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        // Set adapters
+        recyclerViewIngredients.setAdapter(ingredientsAdapter);
+        recyclerViewCategory.setAdapter(categoryAdapter);
+        recyclerViewArea.setAdapter(areaAdapter);
         recyclerView.setAdapter(homeAdapter);
+        recyclerView.setHasFixedSize(true);
+
 
         // Initialize presenter and load products
         homePresenter = new HomePresenter(HomeFragment.this, repo);
         homePresenter.getProducts();
+        homePresenter.getAllCategory();
+        homePresenter.getAllArea();
+        homePresenter.getAllIngredients();
+
     }
 
     // Method to initialize UI components
+
     private void initUI(View view) {
         recyclerView = view.findViewById(R.id.first_recycler_view);
+        recyclerViewIngredients = view.findViewById(R.id.Ingredient_recycler_view);
+        recyclerViewCategory = view.findViewById(R.id.second_recycler_view);
+        recyclerViewArea = view.findViewById(R.id.third_recycler_view);
     }
-
     // Method to display data when it is available
     @Override
     public void showData(List<Meal> products) {
@@ -94,11 +102,7 @@ public class HomeFragment extends Fragment implements SaveOnclickListener, HomeV
     }
 
 
-    // Method to show an error message
-    @Override
-    public void showErrMsg(String error) {
-        Toast.makeText(getContext(), "An Error Occurred", Toast.LENGTH_SHORT).show();
-    }
+
 
     // Method to save a meal (add to favorites)
     @Override
@@ -123,5 +127,31 @@ public class HomeFragment extends Fragment implements SaveOnclickListener, HomeV
         transaction.replace(R.id.main_content, mealDetailFragment); // Replace with your FragmentContainerView ID
         transaction.addToBackStack(null); // Optional: add to back stack
         transaction.commit();
+    }
+
+    @Override
+    public void IngredientsShowData(List<Ingridients> ingridients) {
+        ingredientsAdapter.setList(ingridients);
+        ingredientsAdapter.notifyDataSetChanged();
+        Log.i("SearchFragment", "Ingredients loaded: " + ingridients.size());
+    }
+
+    @Override
+    public void CategoryShowData(List<Category> categories) {
+        categoryAdapter.setList(categories);
+        categoryAdapter.notifyDataSetChanged();
+        Log.i("SearchFragment", "categories loaded: " + categories.size());
+    }
+
+    @Override
+    public void AreaShowData(List<Area> areas) {
+        areaAdapter.setList(areas);
+        areaAdapter.notifyDataSetChanged();
+        Log.i("SearchFragment", "areas loaded: " + areas.size());
+    }
+
+    @Override
+    public void showErrMsg(String error) {
+        Toast.makeText(getContext(), "An Error Occurred: " + error, Toast.LENGTH_SHORT).show();
     }
 }

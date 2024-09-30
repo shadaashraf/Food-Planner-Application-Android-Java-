@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
 import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -46,7 +47,7 @@ public class SavedAdapter extends RecyclerView.Adapter<SavedAdapter.ViewHolder>{
             public TextView txtName;
             public TextView txtDesc;
             public ImageButton saveBtn;
-            public ImageButton open;
+            public CardView myCardView;
             public View layout;
             public ViewHolder(View v) {
                 super(v);
@@ -55,7 +56,7 @@ public class SavedAdapter extends RecyclerView.Adapter<SavedAdapter.ViewHolder>{
                 txtName=v.findViewById(R.id.tv_dish_name);
                 txtDesc=v.findViewById(R.id.tv_dish_recipe);
                 saveBtn=v.findViewById(R.id.img_btn_save);
-                open=v.findViewById(R.id.enter);
+                myCardView=v.findViewById(R.id.cardView);
 
             }
         }
@@ -79,13 +80,12 @@ public class SavedAdapter extends RecyclerView.Adapter<SavedAdapter.ViewHolder>{
                     .into(holder.image);
             holder.txtName.setText(meal.get(position).strMeal);
             holder.txtDesc.setText(meal.get(position).strCategory);
-
+            holder.saveBtn.setImageResource(R.drawable.saved);
+            holder.saveBtn.setTag("colored");
             holder.saveBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (holder.saveBtn.getTag() == null){
-                        holder.saveBtn.setTag("uncolored");
-                    }
+
                     if (holder.saveBtn.getTag().equals("uncolored")) {
                         listener.SaveMeal(meal.get(position));
                         holder.saveBtn.setImageResource(R.drawable.saved);
@@ -99,7 +99,7 @@ public class SavedAdapter extends RecyclerView.Adapter<SavedAdapter.ViewHolder>{
 
                 }
             });
-        holder.open.setOnClickListener(new View.OnClickListener() {
+        holder.myCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 listener.OpenDetails(meal.get(position));

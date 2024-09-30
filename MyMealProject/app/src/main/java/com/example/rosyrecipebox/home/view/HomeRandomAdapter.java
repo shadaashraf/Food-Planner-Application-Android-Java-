@@ -8,10 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -46,8 +48,8 @@ public class HomeRandomAdapter extends RecyclerView.Adapter<HomeRandomAdapter.Vi
             public TextView txtName;
             public TextView txtDesc;
             public ImageButton saveBtn;
-            public ImageButton open;
             public View layout;
+            public CardView myCard;
             public ViewHolder(View v) {
                 super(v);
                 layout=v;
@@ -55,7 +57,7 @@ public class HomeRandomAdapter extends RecyclerView.Adapter<HomeRandomAdapter.Vi
                 txtName=v.findViewById(R.id.tv_dish_name);
                 txtDesc=v.findViewById(R.id.tv_dish_recipe);
                 saveBtn=v.findViewById(R.id.img_btn_save);
-                open=v.findViewById(R.id.enter);
+                myCard=v.findViewById(R.id.CardViewHome);
 
             }
         }
@@ -64,7 +66,7 @@ public class HomeRandomAdapter extends RecyclerView.Adapter<HomeRandomAdapter.Vi
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup recyclerView, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(recyclerView.getContext());
-            View v = inflater.inflate(R.layout.card, recyclerView, false);
+            View v = inflater.inflate(R.layout.fav, recyclerView, false);
             ViewHolder vh = new ViewHolder(v);
             Log.i(TAG, "onCreateViewHolder: Home");
             return vh;
@@ -99,10 +101,11 @@ public class HomeRandomAdapter extends RecyclerView.Adapter<HomeRandomAdapter.Vi
 
                 }
             });
-        holder.open.setOnClickListener(new View.OnClickListener() {
+        holder.myCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 listener.OpenDetails(meal.get(position));
+                Log.i("onClick", "onClick: "+meal.get(position).strYoutube);
             }
         });
 

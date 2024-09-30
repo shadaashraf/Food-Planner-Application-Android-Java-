@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="190dp"
+    android:layout_width="220dp"
     android:layout_height="100dp"
     android:layout_marginLeft="5dp"
     android:layout_marginTop="10dp"
@@ -11,15 +11,32 @@
 
     <ImageButton
         android:id="@+id/Category_regtangle_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="220dp"
+        android:layout_height="match_parent"
         app:srcCompat="@drawable/filled_regtangle" />
 
     <ImageView
         android:id="@+id/Category_tiny_image"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="117dp"
+        android:layout_height="78dp"
         android:layout_gravity="center|right" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="79dp"
+        android:layout_height="111dp"
+        android:layout_gravity="center|left"
+        android:rotation="-270"
+        app:srcCompat="@drawable/trianglepp" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="45dp"
+        android:layout_height="44dp"
+        android:layout_gravity="center|left"
+        android:layout_marginLeft="2dp"
+        android:rotation="-270"
+        app:srcCompat="@drawable/triangle" />
 
     <TextView
         android:id="@+id/CategoryName1"
@@ -30,7 +47,8 @@
         android:layout_marginRight="10dp"
         android:layout_marginBottom="20dp"
         android:textAlignment="center"
-        android:textSize="16sp"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
         android:textStyle="bold"
         tools:text="lamp and lol" />
 

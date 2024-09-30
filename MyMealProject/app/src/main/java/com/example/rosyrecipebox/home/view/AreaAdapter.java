@@ -1,4 +1,4 @@
-package com.example.rosyrecipebox.search.view;
+package com.example.rosyrecipebox.home.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -13,11 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.rosyrecipebox.R;
 import com.example.rosyrecipebox.model.Area;
+import com.example.rosyrecipebox.search.view.ViewAllOnclickListener;
 
 import java.util.List;
 import java.util.Random;
 
-public class AreaAdapter extends RecyclerView.Adapter<com.example.rosyrecipebox.search.view.AreaAdapter.ViewHolder> {
+public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolder> {
         private final Context context;
         private List<Area> areas;
         private ViewAllOnclickListener listener;
@@ -56,7 +57,7 @@ public class AreaAdapter extends RecyclerView.Adapter<com.example.rosyrecipebox.
         }
 
         @Override
-        public void onBindViewHolder(com.example.rosyrecipebox.search.view.AreaAdapter.ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
+        public void onBindViewHolder(AreaAdapter.ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
 //        Glide.with(context).load(Areas.get(position).imgURL)
 //                .apply(new RequestOptions().override(200, 200)
 //                        .placeholder(R.drawable.ic_launcher_background)

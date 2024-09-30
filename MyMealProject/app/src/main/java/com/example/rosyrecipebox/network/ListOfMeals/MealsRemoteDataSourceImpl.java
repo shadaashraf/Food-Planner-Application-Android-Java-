@@ -59,7 +59,7 @@ public class MealsRemoteDataSourceImpl {
             public void onResponse(Call<MealsResponse> call, Response<MealsResponse> response) {
                 if (response.isSuccessful()) {
                     networkCallback.onSuccessResult(response.body().meals);
-                    Log.i(TAG, "onResponse: "+response.body().meals.get(0).idMeal);
+
                 } else {
                     networkCallback.onFailureResult("Response not successful: " + response.message());
                 }
