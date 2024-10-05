@@ -30,9 +30,12 @@ public class MealLocalDataSourceImpl {
             return repo;
     }
 
-    public LiveData<List<PlanMeal>> getPlanData(Date date) {
+    public LiveData<List<PlanMeal>> getPlanData(Date date,char Type) {
 
-        return mealDAO.getAllPlanMeal(date);
+        return mealDAO.getAllPlanMeal(date,Type);
+    }
+    public  LiveData<Meal>  SearchById(String id){
+        return mealDAO.FindMealById(id);
     }
     public LiveData<List<Meal>> getStoredData() {
 

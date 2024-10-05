@@ -18,6 +18,8 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="#FFFFFF"
+            android:backgroundTint="#17FFFFFF"
             android:padding="16dp">
 
             <!-- CardView for the meal information -->
@@ -48,7 +50,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:srcCompat="@tools:sample/avatars" />
+                        tools:srcCompat="@drawable/border_background" />
 
                     <!-- Meal Name -->
                     <TextView
@@ -128,7 +130,7 @@
                                     android:layout_width="24dp"
                                     android:layout_height="24dp"
                                     android:layout_gravity="center"
-                                    android:src="@drawable/ar" /> <!-- Use actual ingredient images here -->
+                                    app:srcCompat="@drawable/filled_circle" /> <!-- Use actual ingredient images here -->
                             </FrameLayout>
 
                             <!-- Ingredient Text -->
@@ -181,8 +183,34 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvInstructions" />
+
+                    <ImageButton
+                        android:id="@+id/CalenderDetails"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="#4DFFFFFF"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/calender" />
+
+                    <ImageButton
+                        android:id="@+id/FavDetails"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="200dp"
+                        android:layout_marginTop="2dp"
+                        android:backgroundTint="#00FFFFFF"
+                        app:layout_constraintBottom_toBottomOf="@+id/imgMealThumb"
+                        app:layout_constraintEnd_toEndOf="@+id/imgMealThumb"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toEndOf="@+id/CalenderDetails"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0"
+                        app:srcCompat="@drawable/save" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

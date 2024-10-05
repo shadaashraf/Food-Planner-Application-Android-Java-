@@ -1,200 +1,254 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f8f9fa"
-    tools:context=".MainActivity">
-
-    <!-- Header for Week Meal Planning -->
-    <TextView
-        android:id="@+id/header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Week Meals Planning"
-        android:textColor="#2a2a2a"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.023"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <!-- Monday Section -->
-    <TextView
-        android:id="@+id/mondayTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Monday"
-        android:textColor="#555"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/header"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/mondayRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/mondayTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp" />
-
+    android:background="#FFFFFF"
+    android:padding="16dp">
 
     <TextView
-        android:id="@+id/tuesdayTitle"
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tuesday"
-        android:textColor="#555"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/mondayRecyclerView"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp" />
+        android:paddingBottom="20dp"
+        android:text="My Week Planner"
+        android:textColor="#4F1787"
+        android:textSize="28sp"
+        android:textStyle="bold" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/tuesdayRecyclerView"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tuesdayTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp" />
+        android:layout_below="@id/title"
+        android:orientation="horizontal"
+        android:paddingBottom="24dp">
 
-    <!-- Wednesday Section -->
-    <TextView
-        android:id="@+id/wednesdayTitle"
-        android:layout_width="wrap_content"
+        <!-- Sunday Button -->
+
+        <!-- Monday Button -->
+        <Button
+            android:id="@+id/sunBtn"
+            style="@style/CustomButtonStyle"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:text="S"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <!-- Tuesday Button -->
+        <Button
+            android:id="@+id/monBtn"
+            style="@style/CustomButtonStyle"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:text="M"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/tueBtn"
+            style="@style/CustomButtonStyle"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:text="T"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <!-- Wednesday Button -->
+        <Button
+            android:id="@+id/wedBtn"
+            style="@style/CustomButtonStyle"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:text="W"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <!-- Thursday Button -->
+        <Button
+            android:id="@+id/thuBtn"
+            style="@style/CustomButtonStyle"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:text="T"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <!-- Friday Button -->
+        <Button
+            android:id="@+id/friBtn"
+            style="@style/CustomButtonStyle"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:text="F"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <!-- Saturday Button -->
+        <Button
+            android:id="@+id/satBtn"
+            style="@style/CustomButtonStyle"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:layout_weight="1"
+            android:text="S"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Breakfast Section -->
+    <LinearLayout
+        android:id="@+id/breakfastLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Wednesday"
-        android:textColor="#555"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/tuesdayRecyclerView"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp" />
+        android:layout_below="@id/title"
+        android:orientation="horizontal"
+        android:layout_marginTop="60dp">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/wednesdayRecyclerView"
-        android:layout_width="0dp"
+        <ImageView
+            android:id="@+id/breakfastIcon"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/ic_breakfast"
+            android:contentDescription="Breakfast Icon" />
+
+        <TextView
+            android:id="@+id/breakfast"
+            android:layout_width="287dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:text="Breakfast"
+            android:textColor="#4F1787"
+            android:textSize="20sp" />
+
+        <ImageButton
+            android:id="@+id/breakfastBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:backgroundTint="#FFFFFF"
+            android:src="@drawable/right_arrow"
+            android:contentDescription="Next" />
+    </LinearLayout>
+
+    <!-- Lunch Section -->
+    <LinearLayout
+        android:id="@+id/lunchLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/wednesdayTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp" />
+        android:layout_below="@id/breakfastLayout"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
 
-    <!-- Thursday Section -->
-    <TextView
-        android:id="@+id/thursdayTitle"
-        android:layout_width="wrap_content"
+        <ImageView
+            android:id="@+id/lunchIcon"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/ic_lunch"
+            android:contentDescription="Lunch Icon" />
+
+        <TextView
+            android:id="@+id/lunch"
+            android:layout_width="297dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:text="Lunch"
+            android:textColor="#4F1787"
+            android:textSize="20sp" />
+
+        <ImageButton
+            android:id="@+id/lunchBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:backgroundTint="#FFFFFF"
+            android:src="@drawable/right_arrow"
+            android:contentDescription="Next" />
+    </LinearLayout>
+
+    <!-- Dinner Section -->
+    <LinearLayout
+        android:id="@+id/dinnerLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Thursday"
-        android:textColor="#555"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/wednesdayRecyclerView"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp" />
+        android:layout_below="@id/lunchLayout"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/thursdayRecyclerView"
-        android:layout_width="0dp"
+        <ImageView
+            android:id="@+id/dinnerIcon"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/ic_dinner"
+            android:contentDescription="Dinner Icon" />
+
+        <TextView
+            android:id="@+id/dinner"
+            android:layout_width="288dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:text="Dinner"
+            android:textColor="#4F1787"
+            android:textSize="20sp" />
+
+        <ImageButton
+            android:id="@+id/dinnerBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:backgroundTint="#FFFFFF"
+            android:src="@drawable/right_arrow"
+            android:contentDescription="Next" />
+    </LinearLayout>
+
+    <!-- Dessert Section -->
+    <LinearLayout
+        android:id="@+id/dessertLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/thursdayTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp" />
+        android:layout_below="@id/dinnerLayout"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
 
-    <!-- Friday Section -->
-    <TextView
-        android:id="@+id/fridayTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Friday"
-        android:textColor="#555"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/thursdayRecyclerView"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp" />
+        <ImageView
+            android:id="@+id/dessertIcon"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/ic_dessert"
+            android:contentDescription="Dessert Icon" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/fridayRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/fridayTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp" />
+        <TextView
+            android:id="@+id/dessert"
+            android:layout_width="288dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:paddingStart="16dp"
+            android:text="Dessert"
+            android:textColor="#4F1787"
+            android:textSize="20sp" />
 
-    <!-- Saturday Section -->
-    <TextView
-        android:id="@+id/saturdayTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Saturday"
-        android:textColor="#555"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/fridayRecyclerView"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp" />
+        <ImageButton
+            android:id="@+id/dessertBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:backgroundTint="#FFFFFF"
+            android:src="@drawable/right_arrow"
+            android:contentDescription="Next" />
+    </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/saturdayRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/saturdayTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp" />
-
-    <!-- Sunday Section -->
-    <TextView
-        android:id="@+id/sundayTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sunday"
-        android:textColor="#555"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/saturdayRecyclerView"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/sundayRecyclerView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/sundayTitle"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginTop="8dp" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

@@ -47,6 +47,7 @@ public class SavedAdapter extends RecyclerView.Adapter<SavedAdapter.ViewHolder>{
             public TextView txtDesc;
             public ImageButton saveBtn;
             public CardView myCardView;
+            public ImageButton calender;
             public View layout;
             public ViewHolder(View v) {
                 super(v);
@@ -56,6 +57,8 @@ public class SavedAdapter extends RecyclerView.Adapter<SavedAdapter.ViewHolder>{
                 txtDesc=v.findViewById(R.id.tv_dish_recipe);
                 saveBtn=v.findViewById(R.id.img_btn_save);
                 myCardView=v.findViewById(R.id.cardView);
+                calender=v.findViewById(R.id.CalenderCard);
+
 
             }
         }
@@ -80,21 +83,11 @@ public class SavedAdapter extends RecyclerView.Adapter<SavedAdapter.ViewHolder>{
             holder.txtName.setText(meal.get(position).strMeal);
             holder.txtDesc.setText(meal.get(position).strCategory);
             holder.saveBtn.setImageResource(R.drawable.saved);
-            holder.saveBtn.setTag("colored");
             holder.saveBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
-                    if (holder.saveBtn.getTag().equals("uncolored")) {
-                        listener.SaveMeal(meal.get(position));
-                        holder.saveBtn.setImageResource(R.drawable.saved);
-                        holder.saveBtn.setTag("colored");
-
-                    } else {
                         holder.saveBtn.setImageResource(R.drawable.save);
-                        holder.saveBtn.setTag("uncolored");
                         listener.DeleteMeal(meal.get(position));
-                    }
 
                 }
             });
@@ -104,7 +97,12 @@ public class SavedAdapter extends RecyclerView.Adapter<SavedAdapter.ViewHolder>{
                 listener.OpenDetails(meal.get(position));
             }
         });
-
+        holder.calender.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.openCalendarDialog(meal.get(position));
+                }
+            });
 
             Log.i(TAG, "***** onBindViewHolder **************");
         }

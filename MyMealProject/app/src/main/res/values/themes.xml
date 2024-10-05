@@ -11,10 +11,10 @@
     <!-- Custom Button Style -->
     <style name="CustomButtonStyle" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="android:backgroundTint">#FFFFFF</item>
-        <item name="strokeColor">#EB3678</item>
+        <item name="strokeColor">#4F1787 </item>
         <item name="strokeWidth">2dp</item>
         <item name="cornerRadius">25dp</item>
-        <item name="android:textColor">#EB3678</item>
+        <item name="android:textColor">#4F1787 </item>
     </style>
 
 </resources>

@@ -1,4 +1,4 @@
-package com.example.rosyrecipebox.ViewMealsbyFilters.view;
+package com.example.rosyrecipebox.WeekPlanner.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -17,27 +17,27 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.rosyrecipebox.R;
 import com.example.rosyrecipebox.model.Meal;
+import com.example.rosyrecipebox.model.PlanMeal;
 
 import java.util.List;
 
-public class ViewMealsByFIlterAdapter extends RecyclerView.Adapter<ViewMealsByFIlterAdapter.ViewHolder> {
+public class WeekPlannerAdapter extends RecyclerView.Adapter<WeekPlannerAdapter.ViewHolder> {
     private final Context context;
-    private List<Meal> meal;
+    private List<PlanMeal> planMeals;
     private static final String TAG = "RecyclerViewSearch";
     public boolean ById=false;
-    ViewAllOnclickListener listener;
+    WeekPlannerOnclickListener listener;
     // Constructor
-    public ViewMealsByFIlterAdapter(Context _context, List<Meal> _meal, ViewAllOnclickListener _listener ) {
+    public WeekPlannerAdapter(Context _context, List<PlanMeal> _planMeal, WeekPlannerOnclickListener _listener ) {
         this.context = _context;
-        this.meal= _meal;
+        this.planMeals= _planMeal;
         listener=_listener;
 
     }
 
-    public void setList(List<Meal> _meal)
+    public void setList(List<PlanMeal> _planMeal)
     {
-        meal = _meal;
-        Log.i("setLIst", "setList: "+meal.get(0)+"the size is"+meal.size());
+        planMeals = _planMeal;
     }
 
     // ViewHolder inner class
@@ -49,6 +49,7 @@ public class ViewMealsByFIlterAdapter extends RecyclerView.Adapter<ViewMealsByFI
         public ImageButton saveBtn;
         public View layout;
         public CardView myCard;
+        public ImageButton calender;
         public ViewHolder(View v) {
             super(v);
             layout=v;
@@ -57,6 +58,7 @@ public class ViewMealsByFIlterAdapter extends RecyclerView.Adapter<ViewMealsByFI
             txtDesc=v.findViewById(R.id.tv_dish_recipe);
             saveBtn=v.findViewById(R.id.img_btn_save);
             myCard =v.findViewById(R.id.cardView);
+            calender=v.findViewById(R.id.CalenderCard);
 
         }
     }
@@ -74,48 +76,61 @@ public class ViewMealsByFIlterAdapter extends RecyclerView.Adapter<ViewMealsByFI
 
     @Override
     public void onBindViewHolder(ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
-        Glide.with(context).load(meal.get(position).strMealThumb)
+
+        Glide.with(context).load(planMeals.get(position).meal.strMealThumb)
                 .apply(new RequestOptions().override(200,200)
                         .placeholder(R.drawable.ic_launcher_background)
                         .error(R.drawable.ic_launcher_foreground))
                 .into(holder.image);
-        holder.txtName.setText(meal.get(position).strMeal);
-        holder.txtDesc.setText(meal.get(position).strCategory);
+        holder.txtName.setText(planMeals.get(position).meal.strMeal);
+        holder.txtDesc.setText(planMeals.get(position).meal.strCategory);
         Log.i("onSearch", "onBindViewHolder: ");
+
+        listener.isFavorite(planMeals.get(position).meal.idMeal, isFavorite -> {
+            if (isFavorite) {
+                holder.saveBtn.setImageResource(R.drawable.saved); // Show saved icon
+                holder.saveBtn.setTag("colored"); // Set tag to indicate saved state
+            } else {// Default color
+                holder.saveBtn.setImageResource(R.drawable.save); // Show default save icon
+                holder.saveBtn.setTag("uncolored"); // Set tag to indicate unsaved state
+            }
+        });
+
+        // Handle button click events
         holder.saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (holder.saveBtn.getTag() == null){
-                    holder.saveBtn.setTag("uncolored");
-                }
-                if (holder.saveBtn.getTag().equals("uncolored")) {
-                    listener.SaveMeal(meal.get(position));
-                    holder.saveBtn.setImageResource(R.drawable.saved);
-                    holder.saveBtn.setTag("colored");
-
+                if (holder.saveBtn.getTag() == null || holder.saveBtn.getTag().equals("uncolored")) {
+                    listener.SaveMeal(planMeals.get(position).meal); // Save the meal as favorite
+                    holder.saveBtn.setImageResource(R.drawable.saved); // Change icon to saved
+                    holder.saveBtn.setTag("colored"); // Update the tag to indicate saved state
                 } else {
-                    holder.saveBtn.setImageResource(R.drawable.save);
-                    holder.saveBtn.setTag("uncolored");
-                    listener.DeleteMeal(meal.get(position));
+                    listener.DeleteMeal(planMeals.get(position).meal); // Remove the meal from favorites
+                    holder.saveBtn.setImageResource(R.drawable.save); // Change icon back to unsaved
+                    holder.saveBtn.setTag("uncolored"); // Update the tag to indicate unsaved state
                 }
-
             }
         });
         holder.myCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ById=true;
-                listener.OpenDetails(meal.get(position));
+                listener.OpenDetails(planMeals.get(position).meal);
             }
         });
-
+        holder.calender.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.removeMealFromPlan(planMeals.get(position));
+            }
+        });
 
 
     }
 
     @Override
     public int getItemCount() {
-        return meal.size();
+        return planMeals.size();
     }
     }
 

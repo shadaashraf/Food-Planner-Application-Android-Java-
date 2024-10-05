@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.rosyrecipebox.MealDetails.view.MealDetailFragment;
 import com.example.rosyrecipebox.R;
+import com.example.rosyrecipebox.calender.view.CalenderFragment;
 import com.example.rosyrecipebox.db.MealLocalDataSourceImpl;
 import com.example.rosyrecipebox.model.Meal;
 import com.example.rosyrecipebox.model.MealsRepositoryImpl;
@@ -74,7 +75,7 @@ public class SavedFragment extends Fragment implements SaveOnclickListener, Save
 
         // Initialize presenter and load products
         savedPresenter = new SavedPresenter(SavedFragment.this, repo);
-        LiveData<List<Meal>> storedMeals=savedPresenter.getProducts();
+        LiveData<List<Meal>> storedMeals=savedPresenter.getMeals();
         storedMeals.observe(SavedFragment.this, new Observer<List<Meal>>() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
@@ -134,4 +135,11 @@ public class SavedFragment extends Fragment implements SaveOnclickListener, Save
         transaction.addToBackStack(null); // Optional: add to back stack
         transaction.commit();
     }
+    @Override
+    public void openCalendarDialog(Meal meal) {
+        CalenderFragment myCalendar = new CalenderFragment(meal);
+        myCalendar.show(getChildFragmentManager(),"CalenderFragment");
+
+    }
+
 }

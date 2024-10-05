@@ -18,7 +18,7 @@ public class SavedPresenter {
         repo = _repo;
     }
 
-    public LiveData<List<Meal>> getProducts()
+    public LiveData<List<Meal>> getMeals()
     {
          return  storedMeals=repo.getStoredMeal();
 

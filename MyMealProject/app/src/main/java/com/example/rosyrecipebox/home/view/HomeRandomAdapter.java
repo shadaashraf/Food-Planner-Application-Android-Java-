@@ -58,7 +58,8 @@ public class HomeRandomAdapter extends RecyclerView.Adapter<HomeRandomAdapter.Vi
             txtDesc = v.findViewById(R.id.tv_dish_recipe);
             saveBtn = v.findViewById(R.id.img_btn_save);
             myCard = v.findViewById(R.id.CardViewHome);
-            plan = v.findViewById(R.id.Calender);
+            plan=v.findViewById(R.id.calender);
+
 
         }
     }
@@ -76,30 +77,36 @@ public class HomeRandomAdapter extends RecyclerView.Adapter<HomeRandomAdapter.Vi
     @Override
     public void onBindViewHolder(ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         Glide.with(context).load(meal.get(position).strMealThumb)
-                .apply(new RequestOptions().override(200, 200)
-                        .placeholder(R.drawable.ic_launcher_background)
+                .apply(new RequestOptions().override(800, 400)
+                        .placeholder(R.drawable.border_background)
                         .error(R.drawable.ic_launcher_foreground))
                 .into(holder.image);
         holder.txtName.setText(meal.get(position).strMeal);
-        holder.txtDesc.setText(meal.get(position).strCategory);
+        holder.txtDesc.setText(meal.get(position).strCategory+" | "+meal.get(position).strArea);
 
+        listener.isFavorite(meal.get(position).idMeal, isFavorite -> {
+            if (isFavorite) {
+                holder.saveBtn.setImageResource(R.drawable.saved); // Show saved icon
+                holder.saveBtn.setTag("colored"); // Set tag to indicate saved state
+            } else {// Default color
+                holder.saveBtn.setImageResource(R.drawable.save); // Show default save icon
+                holder.saveBtn.setTag("uncolored"); // Set tag to indicate unsaved state
+            }
+        });
+
+        // Handle button click events
         holder.saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (holder.saveBtn.getTag() == null) {
-                    holder.saveBtn.setTag("uncolored");
-                }
-                if (holder.saveBtn.getTag().equals("uncolored")) {
-                    listener.SaveMeal(meal.get(position));
-                    holder.saveBtn.setImageResource(R.drawable.saved);
-                    holder.saveBtn.setTag("colored");
-
+                if (holder.saveBtn.getTag() == null || holder.saveBtn.getTag().equals("uncolored")) {
+                    listener.SaveMeal(meal.get(position)); // Save the meal as favorite
+                    holder.saveBtn.setImageResource(R.drawable.saved); // Change icon to saved
+                    holder.saveBtn.setTag("colored"); // Update the tag to indicate saved state
                 } else {
-                    holder.saveBtn.setImageResource(R.drawable.save);
-                    holder.saveBtn.setTag("uncolored");
-                    listener.DeleteMeal(meal.get(position));
+                    listener.DeleteMeal(meal.get(position)); // Remove the meal from favorites
+                    holder.saveBtn.setImageResource(R.drawable.save); // Change icon back to unsaved
+                    holder.saveBtn.setTag("uncolored"); // Update the tag to indicate unsaved state
                 }
-
             }
         });
         holder.myCard.setOnClickListener(new View.OnClickListener() {
@@ -112,7 +119,7 @@ public class HomeRandomAdapter extends RecyclerView.Adapter<HomeRandomAdapter.Vi
         holder.plan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.openCalendarDialog(meal.get(position));
+               listener.openCalendarDialog(meal.get(position));
             }
         });
 

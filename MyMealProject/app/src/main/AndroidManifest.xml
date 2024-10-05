@@ -20,9 +20,11 @@
         <!-- Splash Screen Activity -->
         <activity
             android:name=".SplashActivity"
-            android:exported="true"> <!-- Set to true as it's the launcher activity -->
+            android:exported="true"
+            android:screenOrientation="portrait" > <!-- Set to true as it's the launcher activity -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -30,7 +32,8 @@
         <!-- Main Activity -->
         <activity
             android:name=".MainActivity"
-            android:exported="true" /> <!-- Set exported to true as it's the main activity -->
+            android:exported="true"
+            android:screenOrientation="portrait" /><!-- Set exported to true as it's the main activity -->
 
     </application>
 </manifest>

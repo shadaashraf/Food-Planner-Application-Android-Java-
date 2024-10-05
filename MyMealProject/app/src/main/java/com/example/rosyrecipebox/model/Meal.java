@@ -12,7 +12,6 @@ public class Meal {
     @PrimaryKey
     @NonNull
     public String idMeal;
-
     public String strMeal;
     //public Object strDrinkAlternate;
     public String strCategory;

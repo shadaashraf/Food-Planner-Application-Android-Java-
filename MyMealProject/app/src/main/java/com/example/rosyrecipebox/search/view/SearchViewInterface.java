@@ -1,8 +1,5 @@
 package com.example.rosyrecipebox.search.view;
 
-import com.example.rosyrecipebox.model.Area;
-import com.example.rosyrecipebox.model.Category;
-import com.example.rosyrecipebox.model.Ingridients;
 import com.example.rosyrecipebox.model.Meal;
 
 

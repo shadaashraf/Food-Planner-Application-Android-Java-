@@ -8,14 +8,15 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.rosyrecipebox.MealDetails.view.MealDetailFragment;
 import com.example.rosyrecipebox.R;
 
+import com.example.rosyrecipebox.search.view.ViewMealsByFIlterFragment;
 import com.example.rosyrecipebox.calender.view.CalenderFragment;
 import com.example.rosyrecipebox.db.MealLocalDataSourceImpl;
 import com.example.rosyrecipebox.home.presenter.HomePresenter;
@@ -31,9 +32,6 @@ import com.example.rosyrecipebox.network.ListOfMeals.MealsRemoteDataSourceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 public class HomeFragment extends Fragment implements SaveOnclickListener, HomeViewInterface {
 
@@ -67,9 +65,9 @@ public class HomeFragment extends Fragment implements SaveOnclickListener, HomeV
         // Initialize UI elements
         initUI(view);
         // Set up adapters for each RecyclerView
-        ingredientsAdapter = new IngredientsAdapter(getContext(), new ArrayList<>());
-        categoryAdapter = new CategoryAdapter(getContext(), new ArrayList<>());
-        areaAdapter = new AreaAdapter(getContext(), new ArrayList<>());
+        ingredientsAdapter = new IngredientsAdapter(getContext(), new ArrayList<>(), this);
+        categoryAdapter = new CategoryAdapter(getContext(), new ArrayList<>(), this);
+        areaAdapter = new AreaAdapter(getContext(), new ArrayList<>(), this);
         homeAdapter = new HomeRandomAdapter(getContext(), new ArrayList<>(), this);
         // Set layout managers
         recyclerViewIngredients.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
@@ -90,6 +88,7 @@ public class HomeFragment extends Fragment implements SaveOnclickListener, HomeV
         homePresenter.getAllCategory();
         homePresenter.getAllArea();
         homePresenter.getAllIngredients();
+
 
     }
 
@@ -137,11 +136,64 @@ public class HomeFragment extends Fragment implements SaveOnclickListener, HomeV
     }
 
     @Override
+    public void OpenMealByCtegory(Category category) {
+        if (category != null && category.strCategory != null) {
+            ViewMealsByFIlterFragment viewMealsByFIlterFragment = new ViewMealsByFIlterFragment("category", category.strCategory);
+            FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+            transaction.replace(R.id.main_content, viewMealsByFIlterFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        } else {
+            Log.e("OpenMealByCtegory", "Category or category.strCategory is null");
+        }
+
+    }
+
+    @Override
+    public void OpenMealByArea(Area area) {
+        if (area != null && area.strArea != null) {
+            ViewMealsByFIlterFragment viewMealsByFIlterFragment = new ViewMealsByFIlterFragment("area", area.strArea);
+            FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+            transaction.replace(R.id.main_content, viewMealsByFIlterFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        } else {
+            Log.e("OpenMealByCtegory", "Category or category.strCategory is null");
+        }
+    }
+
+    @Override
+    public void OpenMealByIngridients(Ingridients ingridients) {
+        if (ingridients != null && ingridients.strIngredient != null) {
+            ViewMealsByFIlterFragment viewMealsByFIlterFragment = new ViewMealsByFIlterFragment("ingredient", ingridients.strIngredient);
+            FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
+            transaction.replace(R.id.main_content, viewMealsByFIlterFragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        } else {
+            Log.e("OpenMealByCtegory", "Category or category.strCategory is null");
+        }
+    }
+
+
+    @Override
     public void openCalendarDialog(Meal meal) {
         CalenderFragment myCalendar = new CalenderFragment(meal);
         myCalendar.show(getChildFragmentManager(),"CalenderFragment");
 
     }
+
+    @Override
+    public void isFavorite(String id, FavoriteStatusCallback callback) {
+        homePresenter.SearchMealById(id).observe(getViewLifecycleOwner(), new Observer<Meal>() {
+            @Override
+            public void onChanged(Meal meal) {
+                boolean isFavorite = meal != null; // Set favorite status based on meal presence
+                callback.onResult(isFavorite); // Pass the result to the callback
+            }
+        });
+    }
+
 
 
     @Override
@@ -169,8 +221,5 @@ public class HomeFragment extends Fragment implements SaveOnclickListener, HomeV
     public void showErrMsg(String error) {
         Toast.makeText(getContext(), "An Error Occurred: " + error, Toast.LENGTH_SHORT).show();
     }
-
-
-
 
 }

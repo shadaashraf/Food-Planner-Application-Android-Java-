@@ -34,7 +34,7 @@
         android:shadowRadius="3"
         android:text="Rosy Recipe Box"
         android:textAlignment="center"
-        android:textColor="#ebaeae"
+        android:textColor="#4F1787 "
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

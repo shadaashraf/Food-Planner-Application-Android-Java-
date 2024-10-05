@@ -39,6 +39,8 @@ dependencies {
     implementation("androidx.room:room-runtime:2.6.1")
     annotationProcessor("androidx.room:room-compiler:2.6.1")
     implementation("com.airbnb.android:lottie:5.2.0")
+    implementation ("androidx.cardview:cardview:1.0.0")
+
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)

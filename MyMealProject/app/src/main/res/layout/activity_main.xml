@@ -24,11 +24,11 @@
         <!-- Grid Icon -->
         <ImageButton
             android:id="@+id/navigation_save"
-            android:layout_width="53dp"
-            android:layout_height="33dp"
+            android:layout_width="75dp"
+            android:layout_height="46dp"
             android:background="@null"
             android:contentDescription="Grid"
-            android:src="@drawable/bookmark_40px"
+            android:src="@drawable/save"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.977"
@@ -50,7 +50,6 @@
             android:background="#FFFFFF" />
     </ScrollView>
 
-    <!-- Bottom Navigation Bar -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottom_navigation_bar"
         android:layout_width="match_parent"
@@ -58,76 +57,77 @@
         android:background="#FFFFFF"
         android:padding="8dp">
 
-        <!-- Home Icon -->
-
-        <!-- Search Icon -->
-
-        <!-- Add Icon -->
-
-        <!-- Grid Icon -->
-
         <ImageButton
             android:id="@+id/navigation_home"
             android:layout_width="57dp"
             android:layout_height="45dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginTop="8dp"
             android:background="@null"
             android:contentDescription="Home"
             android:src="@drawable/home"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.121"
+            app:layout_constraintBottom_toTopOf="@+id/text_home"
+            app:layout_constraintEnd_toStartOf="@+id/navigation_search"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/text_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/navigation_home"
+            app:layout_constraintStart_toStartOf="@id/navigation_home" />
 
         <ImageButton
             android:id="@+id/navigation_search"
             android:layout_width="50dp"
             android:layout_height="44dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="4dp"
             android:background="@null"
             android:contentDescription="Search"
             android:src="@drawable/search"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.353"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintBottom_toTopOf="@+id/text_search"
+            app:layout_constraintEnd_toStartOf="@+id/navigation_grid"
+            app:layout_constraintStart_toEndOf="@id/navigation_home" />
 
-        <ImageButton
-            android:id="@+id/navigation_add"
-            android:layout_width="52dp"
-            android:layout_height="46dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="4dp"
-            android:background="@null"
-            android:contentDescription="Add"
-            android:src="@drawable/more"
+        <TextView
+            android:id="@+id/text_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.588"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintEnd_toEndOf="@id/navigation_search"
+            app:layout_constraintStart_toStartOf="@id/navigation_search"
+            tools:text="Search" />
 
         <ImageButton
             android:id="@+id/navigation_grid"
             android:layout_width="36dp"
             android:layout_height="38dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="4dp"
             android:background="@null"
             android:contentDescription="Grid"
-            android:src="@drawable/calender_color"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/planner"
+            app:layout_constraintBottom_toTopOf="@+id/text_grid"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.83"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintStart_toEndOf="@id/navigation_search" />
+
+        <TextView
+            android:id="@+id/text_grid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/navigation_grid"
+            app:layout_constraintStart_toStartOf="@id/navigation_grid"
+            tools:text="Planner" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </LinearLayout>

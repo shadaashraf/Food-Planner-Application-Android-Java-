@@ -7,19 +7,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.rosyrecipebox.MealDetails.view.MealDetailFragment;
 import com.example.rosyrecipebox.R;
+import com.example.rosyrecipebox.calender.view.CalenderFragment;
 import com.example.rosyrecipebox.db.MealLocalDataSourceImpl;
+import com.example.rosyrecipebox.home.view.FavoriteStatusCallback;
 import com.example.rosyrecipebox.model.Meal;
 import com.example.rosyrecipebox.model.MealsRepositoryImpl;
 import com.example.rosyrecipebox.network.Area.AreaRemoteDataSourceImpl;
@@ -146,8 +147,13 @@ public class SearchFragment extends Fragment implements SearchViewInterface, Vie
             transaction.commit();
         }
         else {
-            searchAdapter.setList(meals);
-            searchAdapter.notifyDataSetChanged();
+            if(meals != null) {
+                searchAdapter.setList(meals);
+                searchAdapter.notifyDataSetChanged();
+            }
+            else{
+                Toast.makeText(getContext(),"You Entered Something Wrong",Toast.LENGTH_LONG).show();
+            }
         }
     }
 
@@ -174,4 +180,22 @@ public class SearchFragment extends Fragment implements SearchViewInterface, Vie
         searchPresenter.getProducts("byId",meal.idMeal);
 
     }
+    @Override
+    public void openCalendarDialog(Meal meal) {
+        CalenderFragment myCalendar = new CalenderFragment(meal);
+        myCalendar.show(getChildFragmentManager(),"CalenderFragment");
+
+    }
+
+    @Override
+    public void isFavorite(String id, FavoriteStatusCallback callback) {
+        searchPresenter.SearchMealById(id).observe(getViewLifecycleOwner(), new Observer<Meal>() {
+            @Override
+            public void onChanged(Meal meal) {
+                boolean isFavorite = meal != null; // Set favorite status based on meal presence
+                callback.onResult(isFavorite); // Pass the result to the callback
+            }
+        });
+    }
+
 }

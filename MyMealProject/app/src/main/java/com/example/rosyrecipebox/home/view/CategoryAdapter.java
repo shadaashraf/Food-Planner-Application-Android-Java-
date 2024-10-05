@@ -2,7 +2,6 @@ package com.example.rosyrecipebox.home.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,22 +16,23 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.rosyrecipebox.R;
 import com.example.rosyrecipebox.model.Category;
-import com.example.rosyrecipebox.search.view.ViewAllOnclickListener;
 
 
 import java.util.List;
-import java.util.Random;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
     private final Context context;
     private List<Category> categories;
-    private ViewAllOnclickListener listener;
+    private SaveOnclickListener listener;
     private static final String TAG = "CategoryAdapter";
 
     // Constructor
-    public CategoryAdapter(Context _context, List<Category> _categories) {
-        this.context = _context;
-        this.categories = _categories;
+
+    public CategoryAdapter( Context context,List<Category> categories,SaveOnclickListener listener) {
+
+        this.categories = categories;
+        this.context = context;
+        this.listener=listener;
     }
 
     public void setList(List<Category> _categories) {
@@ -69,7 +69,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public void onBindViewHolder(ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         Glide.with(context).load(categories.get(position).strCategoryThumb)
                 .apply(new RequestOptions().override(200, 200)
-                        .placeholder(R.drawable.ic_launcher_background)
+                        .placeholder(R.drawable.filled_regtangle)
                         .error(R.drawable.ic_launcher_foreground))
                 .into(holder.CategoryImage);
 
@@ -78,6 +78,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         holder.regtangleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                listener.OpenMealByCtegory(categories.get(position));
 
             }
         });

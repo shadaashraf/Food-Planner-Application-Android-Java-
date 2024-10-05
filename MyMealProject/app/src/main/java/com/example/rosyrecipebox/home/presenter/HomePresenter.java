@@ -1,5 +1,7 @@
 package com.example.rosyrecipebox.home.presenter;
 
+import androidx.lifecycle.LiveData;
+
 import com.example.rosyrecipebox.home.view.HomeViewInterface;
 import com.example.rosyrecipebox.model.Area;
 import com.example.rosyrecipebox.model.Category;
@@ -29,7 +31,7 @@ public class HomePresenter implements MealsNetworkCallback,IngridientsNetworkCal
     {
         repo.getAllMeals(this,"random","");
     }
-
+    public LiveData<Meal> SearchMealById(String id){return  repo.SearchById(id);}
     public void addToSaved(Meal meal)
     {
         repo.insertMeal(meal);

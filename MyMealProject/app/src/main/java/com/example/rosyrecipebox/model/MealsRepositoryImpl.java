@@ -40,11 +40,14 @@ public class MealsRepositoryImpl {
         }
         return repo;
     }
-    public LiveData<List<PlanMeal>> getPlanMeal(Date date)
+    public LiveData<List<PlanMeal>> getPlanMeal(Date date,char Type)
     {
-        return localSource.getPlanData(date);
+        return localSource.getPlanData(date,Type);
     }
 
+    public  LiveData<Meal>  SearchById(String id){
+        return localSource.SearchById(id);
+    }
     public LiveData<List<Meal>> getStoredMeal()
     {
         return localSource.getStoredData();

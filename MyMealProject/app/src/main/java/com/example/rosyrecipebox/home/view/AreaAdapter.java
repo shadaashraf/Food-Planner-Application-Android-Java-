@@ -2,7 +2,6 @@ package com.example.rosyrecipebox.home.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,27 +10,31 @@ import android.widget.ImageButton;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.rosyrecipebox.R;
 import com.example.rosyrecipebox.model.Area;
-import com.example.rosyrecipebox.search.view.ViewAllOnclickListener;
 
 import java.util.List;
-import java.util.Random;
 
 public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolder> {
         private final Context context;
         private List<Area> areas;
-        private ViewAllOnclickListener listener;
+        private SaveOnclickListener listener;
         private static final String TAG = "AreaAdapter";
+        private String areaImg;
+        private String imageName;  // The variable for the image name
+        private String dropboxBaseUrl ="https://raw.githubusercontent.com/shadaashraf/Food-Planner-Application-Android-Java-/main/flag/";
+        private String imageUrl;
 
-        // Constructor
-        public AreaAdapter(Context _context, List<Area> _areas) {
-            this.context = _context;
-            this.areas = _areas;
 
-        }
+    public AreaAdapter(Context context, List<Area> areas, SaveOnclickListener listener) {
+        this.context = context;
+        this.areas = areas;
+        this.listener = listener;
+    }
 
-        public void setList(List<Area> _areas) {
+    public void setList(List<Area> _areas) {
             areas = _areas;
         }
 
@@ -56,19 +59,25 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolder> {
             return vh;
         }
 
+        @SuppressLint("SuspiciousIndentation")
         @Override
         public void onBindViewHolder(AreaAdapter.ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
-//        Glide.with(context).load(Areas.get(position).imgURL)
-//                .apply(new RequestOptions().override(200, 200)
-//                        .placeholder(R.drawable.ic_launcher_background)
-//                        .error(R.drawable.ic_launcher_foreground))
-//                .into(holder.flagImage);
+        imageName=areas.get(position).strArea;
+
+        imageUrl=dropboxBaseUrl + imageName.toLowerCase() + ".png";
+
+            Log.i("image", "onBindViewHolder: "+imageUrl);
+        Glide.with(context).load(imageUrl)
+                .apply(new RequestOptions().override(90, 90)
+                        .placeholder(R.drawable.border_background)
+                       .error(R.drawable.ic_launcher_foreground))
+               .into(holder.flagImage);
 
 
             holder.flagImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Handle button click
+                    listener.OpenMealByArea(areas.get(position));
                 }
             });
 
@@ -80,14 +89,6 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.ViewHolder> {
             return areas.size();
         }
 
-        private int generateRandomColor() {
-            Random random = new Random();
-            // Generate random RGB values
-            int r = random.nextInt(256);
-            int g = random.nextInt(256);
-            int b = random.nextInt(256);
-            return Color.rgb(r, g, b);
-        }
     }
 
 

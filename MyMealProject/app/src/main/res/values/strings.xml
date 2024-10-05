@@ -24,4 +24,7 @@
     <string name="ing">Ingredient</string>
     <string name="Category">Category</string>
     <string name="area">Area</string>
+    <string name="DayMeal">Day Meals</string>
+    <string name="AllSavedMeals">All Favourite Meals</string>
+    <string name="Search">Search</string>
 </resources>

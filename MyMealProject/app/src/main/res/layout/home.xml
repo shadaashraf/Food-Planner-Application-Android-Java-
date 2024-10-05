@@ -12,9 +12,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:fontFamily="sans-serif-condensed"
         android:text="@string/MealOfDay"
         android:textColor="#4F1787 "
-        android:textSize="24sp"
+        android:textSize="28sp"
         android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -35,20 +36,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="sans-serif"
             android:text="@string/SearchByIngredients"
             android:textColor="#4F1787 "
-            android:textSize="24sp"
+            android:textSize="28sp"
             android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/btn_first_view_all"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            android:shadowColor="#FFFFFF"
-            android:text="@string/viewall"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -69,19 +62,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="sans-serif"
             android:text="@string/SearchByCategory"
             android:textColor="#4F1787 "
-            android:textSize="24sp"
+            android:textSize="26sp"
             android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/btn_second_view_all"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            android:text="@string/viewall"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -104,17 +90,9 @@
             android:layout_weight="1"
             android:text="@string/SearchByArea2"
             android:textColor="#4F1787 "
-            android:textSize="24sp"
+            android:textSize="28sp"
             android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/btn_third_view_all"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            android:text="@string/viewall"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

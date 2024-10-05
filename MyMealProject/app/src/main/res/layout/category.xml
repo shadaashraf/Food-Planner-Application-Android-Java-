@@ -19,7 +19,8 @@
         android:id="@+id/Category_tiny_image"
         android:layout_width="117dp"
         android:layout_height="78dp"
-        android:layout_gravity="center|right" />
+        android:layout_gravity="center|right"
+        app:srcCompat="@drawable/filled_regtangle" />
 
     <ImageView
         android:id="@+id/imageView"
