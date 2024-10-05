@@ -1,0 +1,85 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center_horizontal">
+
+    <!-- Top Bar with X Icon -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal">
+
+        <!-- X Icon at the top-right -->
+        <ImageButton
+            android:id="@+id/closeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_close"
+        android:contentDescription="Close"/>
+
+
+    </RelativeLayout>
+
+    <!-- CalendarView -->
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="272dp"
+        android:layout_height="269dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:selectedWeekBackgroundColor="#EB3678" />
+
+    <!-- Bottom row of image buttons for Breakfast, Lunch, Dinner, Dessert -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <!-- Breakfast Icon -->
+        <ImageButton
+            android:id="@+id/breakfastButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_breakfast"
+        android:background="@android:color/transparent"
+        android:contentDescription="Breakfast"/>
+
+        <!-- Lunch Icon -->
+        <ImageButton
+            android:id="@+id/lunchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_lunch"
+        android:background="@android:color/transparent"
+        android:layout_marginStart="16dp"
+        android:contentDescription="Lunch"/>
+
+        <!-- Dinner Icon -->
+        <ImageButton
+            android:id="@+id/dinnerButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_dinner"
+        android:background="@android:color/transparent"
+        android:layout_marginStart="16dp"
+        android:contentDescription="Dinner"/>
+
+        <!-- Dessert Icon -->
+        <ImageButton
+            android:id="@+id/dessertButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_dessert"
+        android:background="@android:color/transparent"
+        android:layout_marginStart="16dp"
+        android:contentDescription="Dessert"/>
+
+    </LinearLayout>
+
+</LinearLayout>
