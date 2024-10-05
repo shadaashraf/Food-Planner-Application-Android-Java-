@@ -1,5 +1,6 @@
 package com.example.rosyrecipebox.MealDetails.view;
 
+import android.app.AlertDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -166,9 +167,16 @@ public class MealDetailFragment extends Fragment {
                         favBtn.setImageResource(R.drawable.saved); // Change icon to saved
                         favBtn.setTag("colored"); // Update the tag to indicate saved state
                     } else {
-                        DeleteMeal(meal); // Remove the meal from favorites
-                        favBtn.setImageResource(R.drawable.save); // Change icon back to unsaved
-                        favBtn.setTag("uncolored"); // Update the tag to indicate unsaved state
+                        new AlertDialog.Builder(getContext())
+                                .setMessage("Are you Sure you want to delete")
+                                .setPositiveButton(android.R.string.yes,((dialog, which) -> {
+                                    DeleteMeal(meal); // Remove the meal from favorites
+                                    favBtn.setImageResource(R.drawable.save); // Change icon back to unsaved
+                                    favBtn.setTag("uncolored");
+                                }))
+                                .setNegativeButton(android.R.string.no,null)
+                                .show();
+                        // Update the tag to indicate unsaved state
                     }
                 }
             });

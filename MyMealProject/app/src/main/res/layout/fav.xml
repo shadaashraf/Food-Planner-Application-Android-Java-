@@ -24,23 +24,53 @@
             android:padding="8dp">
 
             <!-- Dish Thumbnail -->
-
-            <!-- Dish Name -->
-
             <ImageView
                 android:id="@+id/img_dish_thumbnail1"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="6dp"
-                android:layout_marginBottom="89dp"
+                android:layout_marginBottom="8dp"
                 android:scaleType="centerCrop"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.064"
+                app:layout_constraintBottom_toTopOf="@+id/tv_dish_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.5"
+                app:layout_constraintWidth_percent="1"
                 app:srcCompat="@drawable/border_background" />
 
+            <!-- Dish Name -->
+            <TextView
+                android:id="@+id/tv_dish_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:textColor="@color/pink"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/img_dish_thumbnail1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Dish Name" />
+
+            <!-- Dish Recipe -->
+            <TextView
+                android:id="@+id/tv_dish_recipe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/pink"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@id/tv_dish_name"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Recipe" />
+
+            <!-- Save Button -->
             <ImageButton
                 android:id="@+id/img_btn_save"
                 android:layout_width="41dp"
@@ -48,57 +78,23 @@
                 android:layout_marginTop="8dp"
                 android:background="@android:color/transparent"
                 android:contentDescription="Save Button"
-                android:src="@drawable/save"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintWidth_percent="0.1"
+                android:src="@drawable/save" />
 
-            <TextView
-                android:id="@+id/tv_dish_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="21dp"
-                android:fontFamily="sans-serif-medium"
-                android:textColor="@color/pink"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/img_dish_thumbnail1"
-                tools:text="Name" />
-
-            <TextView
-                android:id="@+id/tv_dish_recipe"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="316dp"
-                android:fontFamily="sans-serif-medium"
-                android:textColor="@color/pink"
-                android:textSize="14sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_dish_name"
-                tools:text="Recipe" />
-
+            <!-- Calendar Button -->
             <ImageButton
                 android:id="@+id/calender"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:layout_marginTop="16dp"
                 android:backgroundTint="#FFFFFF"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:src="@drawable/calender"
                 app:layout_constraintEnd_toStartOf="@+id/img_btn_save"
-                app:layout_constraintHorizontal_bias="0.01"
+                app:layout_constraintHorizontal_bias="0.028"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0"
-                app:srcCompat="@drawable/calender" />
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

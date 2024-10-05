@@ -2,6 +2,7 @@ package com.example.rosyrecipebox.saved.view;
 
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -86,8 +87,17 @@ public class SavedAdapter extends RecyclerView.Adapter<SavedAdapter.ViewHolder>{
             holder.saveBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                        holder.saveBtn.setImageResource(R.drawable.save);
-                        listener.DeleteMeal(meal.get(position));
+
+                        new AlertDialog.Builder(context)
+                                .setMessage("Are you Sure you want to delete")
+                                .setPositiveButton(android.R.string.yes,((dialog, which) -> {
+                                    listener.DeleteMeal(meal.get(position)); // Remove the meal from favorites
+                                    holder.saveBtn.setImageResource(R.drawable.save); // Change icon back to unsaved
+                                    holder.saveBtn.setTag("uncolored");
+                                }))
+                                .setNegativeButton(android.R.string.no,null)
+                                .show();
+                        // Update the tag to indicate unsaved state
 
                 }
             });

@@ -2,6 +2,7 @@ package com.example.rosyrecipebox.home.view;
 
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -103,9 +104,16 @@ public class HomeRandomAdapter extends RecyclerView.Adapter<HomeRandomAdapter.Vi
                     holder.saveBtn.setImageResource(R.drawable.saved); // Change icon to saved
                     holder.saveBtn.setTag("colored"); // Update the tag to indicate saved state
                 } else {
-                    listener.DeleteMeal(meal.get(position)); // Remove the meal from favorites
-                    holder.saveBtn.setImageResource(R.drawable.save); // Change icon back to unsaved
-                    holder.saveBtn.setTag("uncolored"); // Update the tag to indicate unsaved state
+                    new AlertDialog.Builder(context)
+                            .setMessage("Are you Sure you want to delete")
+                                    .setPositiveButton(android.R.string.yes,((dialog, which) -> {
+                                        listener.DeleteMeal(meal.get(position)); // Remove the meal from favorites
+                                        holder.saveBtn.setImageResource(R.drawable.save); // Change icon back to unsaved
+                                        holder.saveBtn.setTag("uncolored");
+                                    }))
+                            .setNegativeButton(android.R.string.no,null)
+                            .show();
+          // Update the tag to indicate unsaved state
                 }
             }
         });

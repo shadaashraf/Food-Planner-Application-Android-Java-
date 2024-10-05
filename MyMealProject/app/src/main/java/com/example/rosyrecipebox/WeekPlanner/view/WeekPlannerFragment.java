@@ -122,7 +122,7 @@ public class WeekPlannerFragment extends Fragment {
                 transaction.replace(R.id.main_content, plannedMealViewFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
-                Log.d("WeekPlannerFragment", "Navigating to PlannedMealViewFragment with date: " + selectedDate + " and meal type: " + mealType);
+
             }
         }
     }
